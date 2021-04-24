@@ -5,7 +5,7 @@
   "main": "generateHTML.js",
   "directories": {
     "lib": "lib",
-    "test": "unitTests"
+    "test": "__tests__"
   },
   "scripts": {
     "test": "jest"

@@ -18,7 +18,7 @@
 const fs = require("fs");
 // Node library package for terminal input/output
 const inquirer = require("inquirer");
-const TeamMember = require("./lib/teamMember")
+const TeamMember = require("./lib/employee")
 const Engineer = require("./lib/engineer")
 const Manager = require("./lib/manager")
 const Intern = require("./lib/intern")
@@ -29,6 +29,7 @@ const Intern = require("./lib/intern")
 let teamName = "";
 let teamMembers = [];
 let teamId = 0;
+let outputDir = "./dist/";
 
 // -----------------------------------------------------------------------------
 // Function: addTeamName
@@ -198,8 +199,8 @@ function getHTMLStart() {
         <!-- Display a favicon in tab -->
         <link rel="shortcut icon" type="image/jpg" href="./favicon.ico"/>
         <!--Reset all CSS so we don't have browser specific-->
-        <link rel="stylesheet" href="./assets/css/reset.css" />
-        <link rel="stylesheet" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/style.css" />
     
         </head>
         <body>
@@ -232,30 +233,30 @@ function getHTMLEnd() {
 // Input:    <none> 
 // Returns:  <string> HTML 
 // -----------------------------------------------------------------------------
-function getHTMLCard() {
+function getHTMLCard(teamMember) {
     let htmlCard = `
         <div class="member-card">
             <div class="card-top">
-                <h2>${teamMembers[i].name}</h2>
-                <h2>${teamMembers[i].title}</h2>
+                <h2>${teamMember.name}</h2>
+                <h2>${teamMember.title}</h2>
             </div>
             <div class="card-bottom">
-                <p>Employee ID: ${teamMembers[i].teamId}</p>
-                <p>Email: <a href="mailto:${teamMembers[i].email}">${teamMembers[i].email}</a>></p>
+                <p>Employee ID: ${teamMember.teamId}</p>
+                <p>Email: <a href="mailto:${teamMember.email}">${teamMember.email}</a>></p>
         `
-        if (teamMembers[i].officeNumber) {
+        if (teamMember.officeNumber) {
             htmlCard += `
-            <p>Office: ${teamMembers[i].officeNumber}</p>
+            <p>Office: ${teamMember.officeNumber}</p>
             `
         }
-        if (teamMembers[i].github) {
+        if (teamMember.github) {
             htmlCard += `
-            <p>GitHub: <a href="https://github.com/${teamMembers[i].github}">${teamMembers[i].github}</a></p>
+            <p>GitHub: <a href="https://github.com/${teamMember.github}">${teamMember.github}</a></p>
             `
         }
-        if (teamMembers[i].school) {
+        if (teamMember.school) {
             htmlCard += `
-            <p>School: ${teamMembers[i].school}</p>
+            <p>School: ${teamMember.school}</p>
             `
         }
         htmlCard += `
@@ -277,12 +278,13 @@ function generateHTML() {
     let htmlData = getHTMLStart();
 
     // Add the cards for each team member
-    for (let i = 1; i < teamMembers.length; i++) {
-        htmlData += getHTMLCard();
+    for (let i = 0; i < teamMembers.length; i++) {
+        htmlData += getHTMLCard(teamMembers[i]);
     }
 
-    htmlData += getHtmlEnd();
-    fs.writeFile(`./output/Team_${teamName}.html`, htmlData, function (err) { 
+    htmlData += getHTMLEnd();
+    fs.writeFile(`${outputDir}Team_${teamName}.html`, htmlData, function (err) { 
+        console.log(`The following error occurred when writing to the file: ${err}`)
     })
 }
 
