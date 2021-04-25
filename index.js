@@ -44,7 +44,7 @@ function addTeamName() {
             name: "name"
         }
     ])
-        .then(function(data){
+        .then(function (data) {
             teamName = data.name.trim();
             addManager();
         })
@@ -77,7 +77,7 @@ function addManager() {
             const name = data.name;
             const email = data.email;
             const officeNumber = data.officeNumber;
-            teamId ++;
+            teamId++;
             const teamMember = new Manager(name, teamId, email, officeNumber);
             teamMembers.push(teamMember);
             addTeamMembers();  // prompt to add engineers / interns
@@ -141,7 +141,7 @@ function addEngineer() {
             const name = data.name;
             const email = data.email;
             const github = data.github;
-            teamId ++;
+            teamId++;
             const teamMember = new Engineer(name, teamId, email, github);
             teamMembers.push(teamMember);
             addTeamMembers()    // prompt to add engineers / interns
@@ -174,7 +174,7 @@ function addIntern() {
             const name = data.name;
             const email = data.email;
             const school = data.school;
-            teamId ++;
+            teamId++;
             const teamMember = new Intern(name, teamId, email, school);
             teamMembers.push(teamMember);
             addTeamMembers()    // prompt to add engineers / interns
@@ -241,25 +241,25 @@ function getHTMLCard(teamMember) {
                 <h2>${teamMember.title}</h2>
             </div>
             <div class="card-bottom">
-                <p>Employee ID: ${teamMember.teamId}</p>
+                <p>Employee ID: ${teamMember.id}</p>
                 <p>Email: <a href="mailto:${teamMember.email}">${teamMember.email}</a>></p>
         `
-        if (teamMember.officeNumber) {
-            htmlCard += `
+    if (teamMember.officeNumber) {
+        htmlCard += `
             <p>Office: ${teamMember.officeNumber}</p>
             `
-        }
-        if (teamMember.github) {
-            htmlCard += `
-            <p>GitHub: <a href="https://github.com/${teamMember.github}">${teamMember.github}</a></p>
+    }
+    if (teamMember.gitHub) {
+        htmlCard += `
+            <p>GitHub: <a href="https://github.com/${teamMember.gitHub}" target="_blank">${teamMember.gitHub}</a></p>
             `
-        }
-        if (teamMember.school) {
-            htmlCard += `
+    }
+    if (teamMember.school) {
+        htmlCard += `
             <p>School: ${teamMember.school}</p>
             `
-        }
-        htmlCard += `
+    }
+    htmlCard += `
             </div>
         </div>
         `
@@ -283,8 +283,11 @@ function generateHTML() {
     }
 
     htmlData += getHTMLEnd();
-    fs.writeFile(`${outputDir}Team_${teamName}.html`, htmlData, function (err) { 
-        console.log(`The following error occurred when writing to the file: ${err}`)
+    fs.writeFile(`${outputDir}Team_${teamName}.html`, htmlData, (err) => {
+        if (err)
+            console.log(`The following error occurred when writing to the file: ${err}`)
+        else
+            console.log(`The following HTML file was generate: ${outputDir}Team_${teamName}.html`)
     })
 }
 
