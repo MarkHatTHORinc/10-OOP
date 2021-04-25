@@ -1,22 +1,19 @@
-# Generate README.md
-# using
-# node.js
+# Generate HTML file
+# for Team Profile using
+# Node.js
 
 ![license](https://img.shields.io/badge/license-ISC-blue)
 
 ## Description 📰
 ```md
-Using node.js this application generates an ouput file based upon a template. 
-The template contains questions that the application uses to prompt the user 
-for variable input. The template and output file names can be passed as parameters 
-to the application or the user will be prompted for the file. The user can hit 
-enter for default file names.
-The user can enter multiple answers to each question. When the user is done 
-entering answers for a specific question the user enters DONE (case insensitive). 
-The user can also enter STOP to stop the application from running. If STOP is 
-entered no work is saved. The user also has an option to enter BREAK to cause 
-the answers to be written to storage and will allow the user to restart later
-where they left off.
+Using Node.js this application generates an ouput HTML file based upon user input. 
+The application prompts the user for Team information. Prompts vary based upon the
+type of team member being entered.
+The generated HTML file that displays summaries for each team member. In the summary,
+email links should open the default email program populating the TO field with the
+corresponding email address.  The HTML file should also have links to team members 
+GitHub URLs that open in a new tab when clicked. 
+Test scripts are produced to test each type of employee object.
 ```
 
 ## Table of Contents 📚
@@ -31,18 +28,19 @@ where they left off.
 ## Installation 🚧
 ```md
 The following steps should be used to install:
-1. Install NPM installer
-2. NPM install node
-3. NPM install inquirer
+1. Download Repository from GitHub
+2. Install NPM installer (if not already installed)
+3. NPM install node (if not already installed)
+4. NPM install inquirer (if not already installed)
+5. NPM i jest --save-dev (if not already installed)
 ```
 
 ## Usage 🧮
 node ./assets/index.js
 ```md
-    ![Directory Structure](./assets/images/dirStruct.png)
-    ![Template Example](./assets/images/template.png)
-    ![Questions](./assets/images/questions.png)
-    ![README.md](./assets/images/readme.png)
+    ![Directory Structure](./images/dirStruct.png)
+    ![Prompts](./images/prompts.png)
+    ![Generated HTML](./images/HTML.png)
 ```
 
 ## Credits 👷
@@ -57,8 +55,8 @@ ISC license
 
 ## Badges 🛡️
 ```md
-![GT_Bootcamp](https://img.shields.io/static/v1?label=GT_Bootcamp&message=09-NodeJS&color=blue)
-![Course_Work](https://img.shields.io/static/v1?label=Course_Work&message=09-Homework&color=blue)
+![GT_Bootcamp](https://img.shields.io/static/v1?label=GT_Bootcamp&message=10-OOP&color=blue)
+![Course_Work](https://img.shields.io/static/v1?label=Course_Work&message=10-Homework&color=blue)
 ```
 
 ## Questions 🔍
@@ -70,9 +68,8 @@ ISC license
 ## Tests  💻
 ```md
 1. Download GitHub Repostory
-2. Use an existing Template as is or modify. You can also create a new Template
-3. Run the Generator (node ./assets/scripts/index.js)
-4. Verify the README.md generated in the ./output directory
+2. Run the Generator (node index.js)
+4. Verify the HTML file generated in the ./dist directory
 ```
 
 Created by [Generator](_https://github.com/MarkHatTHORinc/09-NodeJS_) using _professional_ template. 
